@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { Pool } = require("pg");
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 // Node.js 코드
 require("dotenv").config();
