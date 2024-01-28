@@ -7,7 +7,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 
-var app = express(); // 이 부분이 누락된 것 같습니다. app 변수를 선언해야 합니다.
+var app = express();
+
+const port = process.env.PORT || 8080;
+app.listen(port, function () {
+  console.log(`Listening on port ${port}`);
+});
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -21,7 +26,7 @@ var independentBookstoreRouter = require(path.join(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(cors({ origin: ["http://localhost:3000"] }));
+app.use(cors({ origin: ["http://localhost:3000", "https://book-er.site/"] }));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
