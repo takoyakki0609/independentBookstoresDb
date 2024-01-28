@@ -9,11 +9,6 @@ var cors = require("cors");
 
 var app = express();
 
-const port = process.env.PORT || 8080;
-app.listen(port, function () {
-  console.log(`Listening on port ${port}`);
-});
-
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var independentBookstoreRouter = require(path.join(
