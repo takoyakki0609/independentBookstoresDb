@@ -8,11 +8,10 @@ const port = process.env.PORT || 8080;
 require("dotenv").config();
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
+  connectionString: process.env.DATABASE_URL, // Heroku에서 제공하는 데이터베이스 URL
+  ssl: {
+    rejectUnauthorized: false, // SSL 연결 구성 (Heroku 요구 사항에 따라 변경할 수 있음)
+  },
 });
 
 app.get("/bookstores", async (req, res) => {
