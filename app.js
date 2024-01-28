@@ -21,16 +21,7 @@ var independentBookstoreRouter = require(path.join(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://book-er.site/",
-      "https://book-stores-7f4c28c258dc.herokuapp.com",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
