@@ -23,7 +23,11 @@ app.set("view engine", "jade");
 
 app.use(
   cors({
-    origin: ["http://localhost:3000/indBookStores", "https://book-er.site/"],
+    origin: [
+      "http://localhost:3000",
+      "https://book-er.site/",
+      "https://book-stores-a868c1b5c0ae.herokuapp.com/",
+    ],
   })
 );
 app.use(logger("dev"));
