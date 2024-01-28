@@ -1,21 +1,21 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 var express = require("express");
 var router = express.Router();
 const { Pool } = require("pg");
 const app = express();
 const port = process.env.PORT || 8080;
 
-// Node.js 코드
-require("dotenv").config();
-
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
 });
 
-app.get("/api/bookstores", async (req, res) => {
+router.get("/api/bookstores", async (req, res) => {
   const { lat, lng, radius } = req.query; // radius는 킬로미터 단위로 가정
 
   const query = `
