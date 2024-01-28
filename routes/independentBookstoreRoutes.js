@@ -15,7 +15,7 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-app.get("/api/bookstores", async (req, res) => {
+app.get("/bookstores", async (req, res) => {
   const { lat, lng, radius } = req.query; // radius는 킬로미터 단위로 가정
 
   const query = `
