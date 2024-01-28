@@ -1,12 +1,12 @@
 {
   "name": "independent",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "build": "echo 'No build step'",
-    "postinstall": "npm run build"
+    "postinstall": "echo 'No postinstall step'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
