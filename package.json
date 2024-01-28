@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "build": "cd client && npm install && npm run build",
-    "heroku-postbuild": "npm run build"
+    "start": "node ./bin/www",
+    "build": "echo 'No build needed'",
+    "heroku-postbuild": "echo 'No postbuild needed'"
   },
   "dependencies": {
     "@angular/cli": "^13.0.0",
