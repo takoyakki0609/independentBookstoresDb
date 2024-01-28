@@ -26,8 +26,9 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://book-er.site/",
-      "https://book-stores-a868c1b5c0ae.herokuapp.com/",
+      "https://book-stores-7f4c28c258dc.herokuapp.com",
     ],
+    credentials: true,
   })
 );
 app.use(logger("dev"));
