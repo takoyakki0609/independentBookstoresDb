@@ -48,4 +48,8 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
+app.get("/", function (req, res) {
+  res.send("Welcome to my web app");
+});
+
 module.exports = app;
