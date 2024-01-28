@@ -1,13 +1,11 @@
 require("dotenv").config();
-
+var app = express();
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-
-var app = express(); // 이 부분이 누락된 것 같습니다. app 변수를 선언해야 합니다.
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
