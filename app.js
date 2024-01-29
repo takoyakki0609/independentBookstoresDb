@@ -26,7 +26,27 @@ const pool = new Pool({
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(cors());
+var allowedOrigins = [
+  "http://localhost:3000",
+  "https://port-0-independentbookstoresdb-3wh3o2blr53yzc2.sel5.cloudtype.app/://example.com",
+  "https://book-er.site",
+]; // 허용할 출처 목록
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // 요청 출처가 허용된 목록에 있는지 확인
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
+app.use(cors(corsOptions));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
