@@ -6,16 +6,21 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
+const { Pool } = require("pg");
 
 var app = express();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var independentBookstoreRouter = require(path.join(
-  __dirname,
-  "routes",
-  "independentBookstoreRoutes"
-));
+
+// 데이터베이스 연결 설정
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -30,7 +35,25 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/bookstores", independentBookstoreRouter);
+
+// 독립 서점 라우터 설정
+app.get("/bookstores", async (req, res) => {
+  const { lat, lng, radius } = req.query; // radius는 킬로미터 단위로 가정
+
+  const query = `
+    SELECT * FROM independentbookstores 
+    WHERE earth_box(ll_to_earth($1, $2), $3 * 1000) @> ll_to_earth(latitude, longitude)
+    AND earth_distance(ll_to_earth($1, $2), ll_to_earth(latitude, longitude)) < $3 * 1000;
+  `;
+
+  try {
+    const result = await pool.query(query, [lat, lng, radius]);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -50,6 +73,11 @@ app.use(function (err, req, res, next) {
 
 app.get("/", function (req, res) {
   res.send("Welcome to my web app");
+});
+
+const port = 8080;
+app.listen(port, () => {
+  console.log(`서버가 ${port}번 포트에서 실행 중입니다.`);
 });
 
 module.exports = app;
