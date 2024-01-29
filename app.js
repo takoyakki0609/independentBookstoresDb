@@ -23,7 +23,11 @@ app.set("view engine", "jade");
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://book-er.site/"],
+    origin: [
+      "http://localhost:3000",
+      "https://book-er.site/",
+      "https://port-0-independentbookstoresdb-3wh3o2blr53yzc2.sel5.cloudtype.app/",
+    ],
     credentials: true,
   })
 );
