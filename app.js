@@ -57,7 +57,11 @@ app.use("/users", usersRouter);
 
 // 독립 서점 라우터 설정
 app.get("/bookstores", async (req, res) => {
-  const { lat, lng, radius } = req.query; // radius는 킬로미터 단위로 가정
+  const { lat, lng, radius } = req.query;
+
+  if (!lat || !lng || !radius) {
+    return res.status(400).send("Latitude, longitude, and radius are required");
+  }
 
   const query = `
     SELECT * FROM independentbookstores 
