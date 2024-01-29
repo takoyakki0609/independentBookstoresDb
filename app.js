@@ -28,9 +28,9 @@ app.set("view engine", "jade");
 
 var allowedOrigins = [
   "http://localhost:3000",
-  "https://port-0-independentbookstoresdb-3wh3o2blr53yzc2.sel5.cloudtype.app/://example.com",
+  "https://port-0-independentbookstoresdb-3wh3o2blr53yzc2.sel5.cloudtype.app",
   "https://book-er.site",
-]; // 허용할 출처 목록
+];
 
 app.use(
   cors({
