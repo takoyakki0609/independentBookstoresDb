@@ -21,16 +21,7 @@ var independentBookstoreRouter = require(path.join(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://book-er.site/",
-      "https://port-0-independentbookstoresdb-3wh3o2blr53yzc2.sel5.cloudtype.app/",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

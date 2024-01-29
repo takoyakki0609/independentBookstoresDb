@@ -6,7 +6,7 @@ var express = require("express");
 var router = express.Router();
 const { Pool } = require("pg");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 const pool = new Pool({
   user: process.env.DB_USER,
