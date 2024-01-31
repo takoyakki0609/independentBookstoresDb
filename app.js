@@ -28,7 +28,7 @@ app.set("view engine", "jade");
 
 var allowedOrigins = [
   "http://localhost:3000",
-  "https://port-0-independentbookstoresdb-3wh3o2blr53yzc2.sel5.cloudtype.app",
+  "https://port-0-independentbookstoresdb-3wh3o2blr53yzc2.sel5.cloudtype.app/",
   "https://book-er.site",
 ];
 
@@ -56,7 +56,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 // 독립 서점 라우터 설정
-app.get("/bookstores", async (req, res) => {
+app.get("/bookstoresdb", async (req, res) => {
   const { lat, lng, radius } = req.query;
 
   if (!lat || !lng || !radius) {
