@@ -65,8 +65,9 @@ app.use("/users", usersRouter);
 
 // 독립 서점 라우터 설정
 app.get("/bookstoresdb", async (req, res) => {
+  console.log("1");
   const { lat, lng, radius } = req.query;
-
+  console.log(lat, lng, radius, "lat, lng, radius");
   if (!lat || !lng || !radius) {
     return res.status(400).send("Latitude, longitude, and radius are required");
   }
@@ -100,10 +101,6 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-});
-
-app.get("/", function (req, res) {
-  res.send("Welcome to my web app");
 });
 
 const port = 8080;
