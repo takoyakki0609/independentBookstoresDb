@@ -22,7 +22,7 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-client.connect((err) => {
+pool.connect((err) => {
   if (err) {
     console.log("Failed to connect db " + err);
   } else {
@@ -72,7 +72,7 @@ app.get("/bookstoresdb", async (req, res) => {
   }
 
   const query = `
-    SELECT * FROM independentbookstores 
+    SELECT * FROM bookstores
     WHERE earth_box(ll_to_earth($1, $2), $3 * 1000) @> ll_to_earth(latitude, longitude)
     AND earth_distance(ll_to_earth($1, $2), ll_to_earth(latitude, longitude)) < $3 * 1000;
   `;
